@@ -1,20 +1,21 @@
-var socket = io();
+const socket = io();
 
-// Incoming socket events
-socket.on('joke', response => {
+// Outgoing socket events
+const jokeOnClick = () => socket.emit('joke');
+
+
+// Handler for an incoming joke
+// joke object = {chatText, speechFile}
+socket.on('joke', jokeObject => {
     const list = document.getElementById('list');
-    const jokeElement = document.createElement("p");
     const newListItem = document.createElement("li");
-    jokeElement.innerText = response.text;
-    newListItem.appendChild(jokeElement);
-    console.log(newListItem);
+    const paragraphElement = document.createElement("p");
+    paragraphElement.innerText = jokeObject.chatText;
+    newListItem.appendChild(paragraphElement);
     list.appendChild(newListItem);
 });
 
 
 
-// Outgoing socket events
-const jokeOnClick = () => {
-    // This will emit the event to all connected sockets
-    socket.emit('joke');
-}
+
+

@@ -4,27 +4,22 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const mockData = require(__dirname + '/helper/mockData.js');
 
-// add client resource folder
 app.use(express.static(__dirname + '/public'));
-
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+
 // Handler for incoming socket messages from clients
-io.on('connection', (socket) => {
+io.on('connection', socket => {
     console.log('a user connected');
 
-
-    socket.on('joke', (msg) => {
-        io.emit('joke', {
-            text: mockData.getJoke()
-        });
-    });
+    socket.on('joke', () => io.emit('joke', mockData.getJoke()));
+    // socket.on('compliment', name => io.emit('compliment', mockData.getCompliment(name)));
 });
 
 
-let port = process.env.PORT;
+let port = process.env.PORT; // needed for export to heroku
 if (port == null || port == "") {
     port = 8000;
 }
