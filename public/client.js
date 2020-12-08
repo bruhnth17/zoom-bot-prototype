@@ -16,5 +16,5 @@ socket.on('joke', e => {
 // Outgoing socket events
 const jokeOnClick = () => {
     // This will emit the event to all connected sockets
-    socket.emit('joke', { text: "My mexican uncle is taking anti anxiety pills. It's for his panic attacks" });
+    socket.emit('joke', { text: "My mexican uncle is taking anti anxiety pills. It's for hispanic attacks" });
 }
