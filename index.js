@@ -1,18 +1,25 @@
-var express = require("express");
-var app = express();
-var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+const express = require("express");
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+const mockData = require(__dirname + '/helper/mockData.js');
 
+// add client resource folder
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+// Handler for incoming socket messages from clients
 io.on('connection', (socket) => {
     console.log('a user connected');
+
+
     socket.on('joke', (msg) => {
-        io.emit('joke', msg);
+        io.emit('joke', {
+            text: mockData.getJoke()
+        });
     });
 });
 
