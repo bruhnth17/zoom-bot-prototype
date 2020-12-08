@@ -1,5 +1,8 @@
 # zoom-bot-prototype
 
-`npm install`
-`npm run start`
+Getting started:
 
+```
+npm install
+npm run dev
+```
