@@ -13,6 +13,9 @@
   "dependencies": {
     "express": "^4.15.2",
     "nodemon": "^2.0.6",
-    "socket.io": "^3.0.4"
+    "socket.io": "^3.0.4",
+    "debug": ">=2.6.9",
+    "fresh": ">=0.5.2",
+    "mime": ">=1.4.1"
   }
 }
