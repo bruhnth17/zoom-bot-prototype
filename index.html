@@ -2,29 +2,39 @@
 <html>
 <head>
     <title>Zoom Bot</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
     <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <div class="row">
     <div class="col-6 fix-padding-right ">
-        <button type="button" class="btn btn-block bg-white">BOT CHAT</button>
+        <button class="btn btn-block bg-white">BOT CHAT</button>
     </div>
     <div class="col-6 fix-padding-right">
-        <button type="button" class="btn btn-block">GROUP CHAT</button>
+        <button class="btn btn-block">GROUP CHAT</button>
     </div>
 </div>
+
+<img src="images/bot.png" class="bot-img">
+
 <ul id="list"></ul>
 
-<div class="btn-container">
 
+<div class="btn-container">
     <!--    The buttons-->
     <div class="row">
         <div class="col-6 fix-padding-right">
-            <button id="b1" onclick="timerOnClick()" type="button" class="btn btn-primary btn-block">TIMER</button>
+            <button id="b1" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-primary btn-block">
+                TIMER
+            </button>
             <button id="b2" type="button" class="btn btn-primary btn-block">RANDOM PERSON</button>
             <button id="b3" type="button" class="btn btn-primary btn-block">ASSIGN TASK</button>
             <button id="b4" type="button" class="btn btn-primary btn-block">PASS THE MIC</button>
@@ -51,19 +61,50 @@
         <h6 id="d4" class="hide">Bot interrupts the person that is talking. Someone else has to talk instead</h6>
         <h6 id="d5" class="hide">Bot motivates the group to go back to work!</h6>
         <h6 id="d6" class="hide">Bot breaks the awkward silence with something</h6>
-        <h6 id="d7" class="hide">Bot anonymously says that there is someone who got lost and asks all the group to repeat briefly what has been said</h6>
-        <h6 id="d8" class="hide">Bot asks everyone to vote for a break, each person replies via their individual chat with the bot</h6>
+        <h6 id="d7" class="hide">Bot anonymously says that there is someone who got lost and asks all the group to
+            repeat briefly what has been said</h6>
+        <h6 id="d8" class="hide">Bot asks everyone to vote for a break, each person replies via their individual chat
+            with the bot</h6>
         <h6 id="d9" class="hide">Bot says in the group a compliment for the specified person</h6>
         <h6 id="d10" class="hide">Bot asks the specified person for their opinion</h6>
-        <h6 id="d11" class="hide">Bot sends an anonymous message to the specified person. The reply is sent back to the person who asked the bot</h6>
+        <h6 id="d11" class="hide">Bot sends an anonymous message to the specified person. The reply is sent back to the
+            person who asked the bot</h6>
         <h6 id="d12" class="hide">Bot shows the group a meme</h6>
         <h6 id="d13" class="hide">Bot proposes a short ice breaker activity</h6>
         <h6 id="d14" class="hide">Bot tells the group a joke</h6>
     </div>
 </div>
 
+<!--    MODALS-->
+<!-- TIMER MODAL -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 fix-padding-right">
+                        <button type="button" class="btn btn-primary btn-block">5 MINUTES</button>
+                        <button type="button" class="btn btn-primary btn-block">15 MINUTES</button>
+                        <button type="button" class="btn btn-primary btn-block">25 MINUTES</button>
+                        <button type="button" class="btn btn-primary btn-block">45 MINUTES</button>
+                    </div>
+                    <div class="col-6 fix-padding-left">
+                        <button type="button" class="btn btn-primary btn-block">10 MINUTES</button>
+                        <button type="button" class="btn btn-primary btn-block">20 MINUTES</button>
+                        <button type="button" class="btn btn-primary btn-block">30 MINUTES</button>
+                        <button type="button" class="btn btn-primary btn-block">1 HOUR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--    Show description of each function when you hover a button   -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $("button").hover(
         function () {
