@@ -32,7 +32,8 @@
     <!--    The buttons-->
     <div class="row">
         <div class="col-6 fix-padding-right">
-            <button id="b1" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-primary btn-block">
+            <button id="b1" data-toggle="modal" data-target="#timerModal" type="button"
+                    class="btn btn-primary btn-block">
                 TIMER
             </button>
             <button id="b2" type="button" class="btn btn-primary btn-block">RANDOM PERSON</button>
@@ -43,10 +44,12 @@
             <button id="b7" type="button" class="btn btn-primary btn-block">I AM LOST</button>
         </div>
         <div class="col-6 fix-padding-left">
-            <button id="b8" type="button" class="btn btn-primary btn-block">BREAK</button>
-            <button id="b9" type="button" class="btn btn-primary btn-block">COMPLIMENT</button>
-            <button id="b10" type="button" class="btn btn-primary btn-block">ASK OPINION</button>
-            <button id="b11" type="button" class="btn btn-primary btn-block">MAKE SURE _ IS OK</button>
+            <button id="b8" data-toggle="modal" data-target="#breakModal" type="button"
+                    class="btn btn-primary btn-block">BREAK
+            </button>
+            <button id="b9" data-toggle="modal" data-target="#complimentModal" type="button" class="btn btn-primary btn-block">COMPLIMENT</button>
+            <button id="b10" data-toggle="modal" data-target="#opinionModal" type="button" class="btn btn-primary btn-block">ASK OPINION</button>
+            <button id="b11" data-toggle="modal" data-target="#isokModal" type="button" class="btn btn-primary btn-block">MAKE SURE _ IS OK</button>
             <button id="b12" type="button" class="btn btn-success btn-block">SHOW MEME</button>
             <button id="b13" type="button" class="btn btn-success btn-block">ICE BREAKER</button>
             <button id="b14" onclick="jokeOnClick()" type="button" class="btn btn-success btn-block">JOKE</button>
@@ -77,11 +80,12 @@
 
 <!--    MODALS-->
 <!-- TIMER MODAL -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="timerModal" role="dialog">
     <div class="modal-dialog modal-sm">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
+                <h5 class="modal-title">Set timer</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -104,14 +108,100 @@
     </div>
 </div>
 
+<!-- BREAK MODAL -->
+<div class="modal fade" id="breakModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Do you want to take a break?</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-6 fix-padding-right">
+                        <button type="button" class="btn btn-primary btn-block">YES</button>
+                    </div>
+                    <div class="col-6 fix-padding-left">
+                        <button type="button" class="btn btn-primary btn-block">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- COMPLIMENT -->
+<div class="modal fade" id="complimentModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Who do you want to send a compliment to?</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary btn-block">ROBERT</button>
+                <button type="button" class="btn btn-primary btn-block">ANQI</button>
+                <button type="button" class="btn btn-primary btn-block">THOMAS</button>
+                <button type="button" class="btn btn-primary btn-block">LEO</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- COMPLIMENT -->
+<div class="modal fade" id="isokModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Make sure this person is ok</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary btn-block">ROBERT</button>
+                <button type="button" class="btn btn-primary btn-block">ANQI</button>
+                <button type="button" class="btn btn-primary btn-block">THOMAS</button>
+                <button type="button" class="btn btn-primary btn-block">LEO</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- OPINION -->
+<div class="modal fade" id="opinionModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Who do you want to ask for an opinion?</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary btn-block">ROBERT</button>
+                <button type="button" class="btn btn-primary btn-block">ANQI</button>
+                <button type="button" class="btn btn-primary btn-block">THOMAS</button>
+                <button type="button" class="btn btn-primary btn-block">LEO</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--    Show description of each function when you hover a button   -->
 <script>
     $("button").hover(
         function () {
             var elmId = $(this).attr("id").substr(1);
             var newId = '#d' + elmId;
-            $(newId).html();
-            $(newId).toggleClass("hide");
+            for(i=1;i<15;i++){
+                $('#d' + i).addClass("hide");
+            }
+            $(newId).removeClass("hide");
         }
     )
 </script>
