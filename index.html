@@ -4,7 +4,9 @@
     <title>Zoom Bot</title>
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
-    <link href="style.css" rel="stylesheet" >
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
@@ -12,6 +14,65 @@
 <button onclick="jokeOnClick()">Joke</button>
 
 <ul id="list"></ul>
+
+<div class="btn-container">
+
+<!--    The buttons-->
+    <div class="row">
+        <div class="col-6 fix-padding-right">
+            <button id="b1" type="button" class="btn btn-primary btn-block">TIMER</button>
+            <button id="b2" type="button" class="btn btn-primary btn-block">RANDOM PERSON</button>
+            <button id="b3" type="button" class="btn btn-primary btn-block">ASSIGN TASK</button>
+            <button id="b4" type="button" class="btn btn-primary btn-block">PASS THE MIC</button>
+            <button id="b5" type="button" class="btn btn-primary btn-block">BACK TO WORK!</button>
+            <button id="b6" type="button" class="btn btn-primary btn-block">AWKWARD SILENCE</button>
+            <button id="b7" type="button" class="btn btn-primary btn-block">I AM LOST</button>
+        </div>
+        <div class="col-6 fix-padding-left">
+            <button id="b8" type="button" class="btn btn-primary btn-block">BREAK</button>
+            <button id="b9" type="button" class="btn btn-primary btn-block">COMPLIMENT</button>
+            <button id="b10" type="button" class="btn btn-primary btn-block">ASK OPINION</button>
+            <button id="b11" type="button" class="btn btn-primary btn-block">MAKE SURE _ IS OK</button>
+            <button id="b12" type="button" class="btn btn-success btn-block">SHOW MEME</button>
+            <button id="b13" type="button" class="btn btn-success btn-block">ICE BREAKER</button>
+            <button id="b14" type="button" class="btn btn-success btn-block">JOKE</button>
+        </div>
+    </div>
+
+<!--    The description field to show each functionality    -->
+    <div class="description-field">
+        <h6 id="d1" class="hide">Bot sets a timer and tells the group when the time is up</h6>
+        <h6 id="d2" class="hide">Bot asks everyone to vote for a break, each person replies via their individual chat
+            with the bot</h6>
+        <h6 id="d3" class="hide">Bot randomly chooses a person</h6>
+        <h6 id="d4" class="hide">Bot randomly assigns the specified roles to random people</h6>
+        <h6 id="d5" class="hide">Bot interrupts the person that is talking. Someone else has to talk instead</h6>
+        <h6 id="d6" class="hide">Bot motivates the group to go back to work!</h6>
+        <h6 id="d7" class="hide">Bot breaks the awkward silence with something</h6>
+        <h6 id="d8" class="hide">Bot anonymously says that there is someone who got lost and asks all the group to
+            repeat briefly what has been said</h6>
+        <h6 id="d9" class="hide">Bot says in the group a compliment for the specified person</h6>
+        <h6 id="d10" class="hide">Bot asks the specified person for their opinion</h6>
+        <h6 id="d11" class="hide">Bot sends an anonymous message to the specified person. The reply is sent back to the
+            person who asked the bot</h6>
+        <h6 id="d12" class="hide">Bot shows the group a meme</h6>
+        <h6 id="d13" class="hide">Bot proposes a short ice breaker activity</h6>
+        <h6 id="d14" class="hide">Bot tells the group a joke</h6>
+    </div>
+</div>
+
+<!--    Show description of each function when you hover a button   -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $("button").hover(
+        function () {
+            var elmId = $(this).attr("id").substr(1);
+            var newId = '#d' + elmId;
+            $(newId).html();
+            $(newId).toggleClass("hide");
+        }
+    )
+</script>
 
 </body>
 </html>
