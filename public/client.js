@@ -3,6 +3,7 @@ const socket = io();
 // Outgoing socket events
 const jokeOnClick = () => socket.emit('joke');
 
+const timerOnClick = () => socket.emit('timer');
 
 // Handler for an incoming joke
 // joke object = {chatText, speechFile}
