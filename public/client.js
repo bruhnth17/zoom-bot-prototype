@@ -7,7 +7,11 @@ const jokeOnClick = () => {
     socket.emit('joke')
 };
 
-const timerOnClick = () => socket.emit('timer');
+const timerOnClick = minutes => {
+    socket.emit('timer', {
+        minutes: minutes
+    })
+};
 
 // Handler for an incoming joke
 
@@ -25,6 +29,36 @@ socket.on('randomPerson', randomPersonObject => {
 
     }, 1000);
 });
+
+socket.on('timerStart', timerStartObject => {
+    playJingle();
+
+    setTimeout(function (){
+
+        console.log(`audio/${timerStartObject.speechFile}.m4a`);
+        const audio = new Audio(`audio/${timerStartObject.speechFile}.m4a`);
+        audio.play();
+
+    }, 1000);
+});
+
+socket.on('timerUpdate', timerUpdateObject => {
+    console.log(timerUpdateObject.time)
+});
+
+socket.on('timerDone', timerDoneObject => {
+    playJingle();
+
+    setTimeout(function (){
+
+        console.log(`audio/${timerDoneObject.speechFile}.m4a`);
+        const audio = new Audio(`audio/${timerDoneObject.speechFile}.m4a`);
+        audio.play();
+
+    }, 1000);
+});
+
+
 
 socket.on('passTheMic', passTheMicObject => {
 });
