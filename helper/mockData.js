@@ -47,6 +47,34 @@ const RANDOMPERSON = [{
     voiceFile: "Random - Miriam.m4a"
 }];
 
+const OPINIONS = [
+    {
+        name: "Golina",
+        voiceFile: "Opinion%20-%20Golina",
+        groupChatText: "Hey Golina, what do you think?"
+    },
+    {
+        name: "Adrian",
+        voiceFile: "Opinion%20-%20Adrian",
+        groupChatText: "Hey Adrian, what do you think?"
+    },
+    {
+        name: "Henrik",
+        voiceFile: "Opinion%20-%20Henrik",
+        groupChatText: "Hey Henrik, what do you think?"
+    },
+    {
+        name: "Catarina",
+        voiceFile: "Opinion%20-%20Catarina",
+        groupChatText: "Hey Catarina, what do you think?"
+    },
+    {
+        name: "Miriam",
+        voiceFile: "Opinion%20-%20Miriam",
+        groupChatText: "Hey Miriam, what do you think?"
+    },
+]
+
 const JOKES = [{
     groupChatText: "Here's a wee joke for you, guys. I told my girlfriend she drew her eyebrows too high. She seemed surprised.",
     voiceFile: "Joke 1.m4a"
@@ -103,12 +131,16 @@ const _getCompliment = name => {
 }
 const _getIceBreaker = () => getRandomEntry(ICEBREAKERS);
 const _getRandomPerson = () => getRandomEntry(RANDOMPERSON);
-
+const _getOpinion = name => {
+    const found = OPINIONS.find(op => op.name.toLowerCase() == name.toLowerCase());
+    return found ? found : {name: name, groupChatText: `What do you think ${name}?`}
+}
 
 module.exports = {
     getJoke: _getJoke,
     getMeme: _getMeme,
     getCompliment: _getCompliment,
     getIceBreaker: _getIceBreaker,
-    getRandomPerson: _getRandomPerson
+    getRandomPerson: _getRandomPerson,
+    getOpinion: _getOpinion
 };

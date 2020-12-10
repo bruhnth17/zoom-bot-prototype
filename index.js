@@ -44,7 +44,7 @@ io.on('connection', socket => {
         VOTE_IN_PROGRESS = true;
         io.emit('breakVote');
     });
-    // socket.on('askOpinion', () => io.emit('askOpinion', mockData.getAskOpinion()));
+    socket.on('opinion', obj => io.emit('opinion', mockData.getOpinion(obj.name)));
     socket.on('randomPerson', () => io.emit('randomPerson', mockData.getRandomPerson()));
 
     socket.on('timer', obj => {
