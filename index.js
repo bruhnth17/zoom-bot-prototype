@@ -9,26 +9,24 @@ let TIMER_IN_USE = false;
 let USERS = []
 
 app.use(express.static(__dirname + '/public'));
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
+});
+app.get('/users', (req, res) => {
+    res.json(USERS);
 });
 
 
 // Handler for incoming socket messages from clients
 io.on('connection', socket => {
-    USERS.push({
-        id: socket.id,
-        name: ""
-    })
 
-    socket.on('nameChange', name => {
-        USERS = USERS.map(user =>
-            user.id === socket.id ? { ...user, name: name } : user
-        );
-    })
+    userRegistration(socket);
 
+    socket.on('compliment', complimentObject => io.emit('compliment', mockData.getCompliment(complimentObject.name)))
 
     socket.on('joke', () => io.emit('joke', mockData.getJoke()));
+
     socket.on('showMeme', () => io.emit('showMeme', mockData.getMeme()));
     // socket.on('compliment', name => io.emit('compliment', mockData.getCompliment(name)));
 
@@ -56,10 +54,25 @@ io.on('connection', socket => {
         timer.start(obj.minutes * 1000 * 60);
     })
 
+});
+
+const userRegistration = socket => {
+    USERS.push({
+        id: socket.id,
+        name: ""
+    })
+
+    socket.on('nameChange', name => {
+        console.log(USERS)
+        USERS = USERS.map(user =>
+            user.id === socket.id ? { ...user, name: name } : user
+        );
+    })
+
     socket.on('disconnect', () => {
         USERS = USERS.filter( el => el.id !== socket.id );
     })
-});
+}
 
 
 

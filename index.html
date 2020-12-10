@@ -80,7 +80,7 @@
                 </button>
             </div>
             <div class="col-6 fix-padding-left">
-                <button id="b8" data-toggle="modal" data-target="#complimentModal" type="button"
+                <button id="b8" data-toggle="modal" data-target="#complimentModal" type="button" onclick="generateNames()"
                         class="btn btn-primary btn-block">COMPLIMENT
                 </button>
             </div>
@@ -204,12 +204,11 @@
                 <h5 class="modal-title">Who do you want to send a compliment to?</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="dynamicNameList">
                 <button type="button" class="btn btn-primary btn-block">ROBERT</button>
                 <button type="button" class="btn btn-primary btn-block">ANQI</button>
                 <button type="button" class="btn btn-primary btn-block">THOMAS</button>
                 <button type="button" class="btn btn-primary btn-block">LEO</button>
-
             </div>
         </div>
     </div>
@@ -254,6 +253,7 @@
 <!--Change between tabs-->
 <script>
     $(document).ready(function() {
+        document.getElementById("nameInput").value = "";
         $('#nameModel').modal({
             show: true
         })

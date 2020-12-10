@@ -17,6 +17,12 @@ const timerOnClick = minutes => {
     })
 };
 
+const complimentClick = name => {
+    socket.emit('compliment', {
+        name: name
+    })
+}
+
 // Handler for an incoming joke
 
 // randomPersonObject = {groupChatText, speechFile}
@@ -94,8 +100,24 @@ socket.on('breakDecision', breakDecisionObject => {
     // when the vote has been decided
 });
 
-socket.on('compliment', iAmLostObject => {
+socket.on('compliment', complimentObject => {
     playJingle();
+
+    setTimeout( () => {
+        const audio = new Audio(`audio/${complimentObject.voiceFile}.m4a`);
+        console.log(`audio/${complimentObject.voiceFile}.m4a`);
+        audio.play();
+    }, 1000);
+
+    // group
+    const groupChat = document.getElementById("group-container");
+    const text = document.createElement("p");
+    const br = document.createElement("br");
+    text.innerText = complimentObject.groupChatText;
+    groupChat.appendChild(text);
+    groupChat.appendChild(br);
+
+    showNotification();
 });
 
 socket.on('askOpinion', askOpinionObject => {
@@ -170,9 +192,31 @@ const showNotification = () => {
 
 const changeName = () => {
     const newName = document.getElementById("nameInput").value;
-    console.log(newName);
     socket.emit("nameChange", newName);
 }
 
+/**
+ * Used to automatically genereate names of connected people
+ */
+const generateNames = async () => {
+    const nameList = document.getElementById("dynamicNameList")
+    nameList.innerHTML = ''; // empty
+
+    const response = await fetch('/users');
+    const users = await response.json(); //extract JSON from the http response
+
+    for (const user of users) {
+        const newButton = document.createElement('button');
+        newButton.type = "button"
+        newButton.className = "btn btn-primary btn-block"
+        newButton.innerText = user.name  === "" ? "<no name>" : user.name;
+        newButton.onclick = () => {
+            if(user.name !== "") {
+               complimentClick(user.name);
+            }
+        };
+        nameList.append(newButton);
+    }
+}
 
 
