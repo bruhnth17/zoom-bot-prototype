@@ -3,13 +3,11 @@ const socket = io();
 // Outgoing socket events
 const jokeOnClick = () => {
     // Example how to send audio TODO: delete later
-    playJingle();
     socket.emit('joke')
 };
 
 // Outgoing socket events
 const memeOnClick = () => {
-    playJingle();
     socket.emit('showMeme')
 };
 
