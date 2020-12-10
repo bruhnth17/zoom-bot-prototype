@@ -17,11 +17,11 @@
 </head>
 <body id="bd">
 <div class="row " style="cursor: pointer">
-    <div class="col-6 fix-padding-right ">
-        <div id="bot-btn" style="background-color: white; padding: 8px" onclick="openPersonalTab()">BOT CHAT</div>
+    <div class="col-6 padding0 ">
+        <div id="bot-btn" style="background-color: white; padding: 8px; text-align: center;" onclick="openPersonalTab()">BOT</div>
     </div>
-    <div class="col-6 fix-padding-right">
-        <div id="group-btn" style="background-color: lightgray; padding: 8px" onclick="openGroupTab()">
+    <div class="col-6 padding0">
+        <div id="group-btn" style="background-color: lightgray; padding: 8px; text-align: center;" onclick="openGroupTab()">
             <i class="fa fa-envelope hide" id="msg" aria-hidden="true"></i>GROUP CHAT
         </div>
     </div>
@@ -29,6 +29,13 @@
 
 <div id="group" class="hide">
     <div id="group-container">
+    </div>
+    <div class="group-chat-field">
+        <div><img src="images/p1.png" class="h-30">
+            <img src="images/p2.png" class="right h-30">
+        </div>
+
+        <span>Type messagge here...</span>
     </div>
 </div>
 <div id="personal">
@@ -275,9 +282,9 @@
 </script>
 
 <script>
-        $(".breakbtn").click(function () {
-            document.getElementById("breakModal").style.display = "none";
-        });
+    $(".breakbtn").click(function () {
+        document.getElementById("breakModal").style.display = "none";
+    });
 
 </script>
 
