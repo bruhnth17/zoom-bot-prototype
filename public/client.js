@@ -65,19 +65,17 @@ const complimentClick = name => {
 }
 
 socket.on('randomPerson', randomPersonObject => {
+    changeEyecolor();
+    playJingle();
+
     setTimeout(function () {
         showNotification();
+
         // bubble
         const bubble = document.getElementById('speechBubble');
         bubble.innerText = "I have randomly selected someone";
 
-        // group
-        const groupChat = document.getElementById("group-container");
-        const paragraphElement = document.createElement("span");
-        const br = document.createElement("br");
-        paragraphElement.innerText = randomPersonObject.groupChatText;
-        groupChat.appendChild(paragraphElement);
-        groupChat.appendChild(br);
+        sendTextToGroup(randomPersonObject.groupChatText);
 
         playAudio(randomPersonObject.voiceFile);
 
@@ -85,6 +83,7 @@ socket.on('randomPerson', randomPersonObject => {
 });
 
 socket.on('timerStart', timerStartObject => {
+    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -113,6 +112,7 @@ socket.on('timerDone', timerDoneObject => {
 });
 
 socket.on('passTheMic', iAmLostObject => {
+    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -121,17 +121,24 @@ socket.on('passTheMic', iAmLostObject => {
         const bubble = document.getElementById('speechBubble');
         bubble.innerText = "I have passed the mic";
 
+        sendTextToGroup("Hey! Let's pass the mic to someone else!")
+
         playAudio("Pass the mic.m4a");
 
     }, 1000);
 });
 
 socket.on('backToWork', backToWorkObject => {
+    changeEyecolor();
+    playJingle();
+
     setTimeout(function () {
 
         // bubble
         const bubble = document.getElementById('speechBubble');
         bubble.innerText = "I have asked the group to go back to work";
+
+        sendTextToGroup("Alright everyone! Enough of this dilly-dallying... Let's get back to work!")
 
         playAudio("Back to work.m4a");
 
@@ -139,6 +146,9 @@ socket.on('backToWork', backToWorkObject => {
 });
 
 socket.on('awkwardSilence', awkwardSilenceObject => {
+    changeEyecolor();
+    playJingle();
+
     setTimeout(function () {
 
         // bubble
@@ -151,6 +161,7 @@ socket.on('awkwardSilence', awkwardSilenceObject => {
 });
 
 socket.on('iAmLost', iAmLostObject => {
+    changeEyecolor();
     setTimeout(function () {
 
         // bubble
@@ -182,6 +193,7 @@ socket.on('breakDecision', breakDecisionObject => {
 });
 
 socket.on('compliment', complimentObject => {
+    changeEyecolor();
     playJingle();
 
     setTimeout( () => {
@@ -190,13 +202,7 @@ socket.on('compliment', complimentObject => {
         audio.play();
     }, 1000);
 
-    // group
-    const groupChat = document.getElementById("group-container");
-    const text = document.createElement("p");
-    const br = document.createElement("br");
-    text.innerText = complimentObject.groupChatText;
-    groupChat.appendChild(text);
-    groupChat.appendChild(br);
+    sendTextToGroup(complimentObject.groupChatText);
 
     showNotification();
 });
@@ -207,6 +213,9 @@ socket.on('askOpinion', askOpinionObject => {
 });
 
 socket.on('showMeme', showMemeObject => {
+    changeEyecolor();
+    playJingle();
+
     setTimeout(function () {
         showNotification();
 
@@ -214,14 +223,7 @@ socket.on('showMeme', showMemeObject => {
         const bubble = document.getElementById('speechBubble');
         bubble.innerText = "I have sent a meme to the group chat";
 
-        // group
-        const groupChat = document.getElementById("group-container");
-        const memeImg = document.createElement("img");
-        const br = document.createElement("br");
-        memeImg.src = showMemeObject.groupChatText;
-        memeImg.classList.add("memeImg");
-        groupChat.appendChild(memeImg);
-        groupChat.appendChild(br);
+        sendMemeToGroup(showMemeObject.groupChatText);
 
         playAudio("Meme.m4a");
 
@@ -229,6 +231,7 @@ socket.on('showMeme', showMemeObject => {
 });
 
 socket.on('iceBreaker', iceBreakerObject => {
+    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -244,6 +247,7 @@ socket.on('iceBreaker', iceBreakerObject => {
 
 // joke object = {groupChatText, speechFile}
 socket.on('joke', jokeObject => {
+    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -253,13 +257,7 @@ socket.on('joke', jokeObject => {
         const bubble = document.getElementById('speechBubble');
         bubble.innerText = "I sent a joke in the group chat";
 
-        // group
-        const groupChat = document.getElementById("group-container");
-        const paragraphElement = document.createElement("span");
-        const br = document.createElement("br");
-        paragraphElement.innerText = jokeObject.groupChatText;
-        groupChat.appendChild(paragraphElement);
-        groupChat.appendChild(br);
+        sendTextToGroup(jokeObject.groupChatText);
 
         playAudio(jokeObject.voiceFile);
 
@@ -269,12 +267,38 @@ socket.on('joke', jokeObject => {
 const playJingle = () => {
     const audio = new Audio('audio/jingle.wav');
     audio.play();
+
 }
 
 
 function playAudio(name) {
     const audio = new Audio("audio/" + name);
     audio.play();
+}
+
+function sendMemeToGroup(meme) {
+
+    const groupChat = document.getElementById("group-container");
+    const memeImg = document.createElement("img");
+    const br = document.createElement("br");
+    memeImg.src = meme;
+    memeImg.classList.add("memeImg");
+    groupChat.appendChild(memeImg);
+    groupChat.appendChild(br);
+}
+
+function sendTextToGroup(text) {
+    const groupChat = document.getElementById("group-container");
+    const paragraphElement = document.createElement("span");
+    const br = document.createElement("br");
+    const br2 = document.createElement("br");
+    const bot = document.createElement("span");
+    bot.innerHTML = "From Bot";
+    paragraphElement.innerText = text;
+    groupChat.appendChild(bot);
+    groupChat.appendChild(br);
+    groupChat.appendChild(paragraphElement);
+    groupChat.appendChild(br2);
 }
 
 const showNotification = () => {
@@ -313,6 +337,15 @@ const generateNames = async () => {
         };
         nameList.append(newButton);
     }
+}
+
+function changeEyecolor() {
+    var eyecolor = document.getElementById("eyecolor");
+    eyecolor.classList.toggle("eyecolor");
+
+    setTimeout(function () {
+        eyecolor.classList.toggle("eyecolor");
+    }, 500);
 }
 
 

@@ -48,34 +48,34 @@ const RANDOMPERSON = [{
 }];
 
 const JOKES = [{
-    groupChatText: "text",
+    groupChatText: "Here's a wee joke for you, guys. I told my girlfriend she drew her eyebrows too high. She seemed surprised.",
     voiceFile: "Joke 1.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys. My dog used to chase people on a bike a lot. It got so bad, finally I had to take his bike away.",
     voiceFile: "Joke 2.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys. I'm so good at sleeping... I can do it with my eyes closed",
     voiceFile: "Joke 3.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys. My boss told me to have a good day... so I went home.",
     voiceFile: "Joke 4.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys. Why do blind people hate skydiving? It scares the hell out of their dogs.",
     voiceFile: "Joke 5.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys. What do you call a guy with a rubber toe. Roberto.",
     voiceFile: "Joke 6.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys.",
     voiceFile: "Joke 7.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys.",
     voiceFile: "Joke 8.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys.",
     voiceFile: "Joke 9.m4a"
 }, {
-    groupChatText: "text",
+    groupChatText: "Here's a joke for you, guys. When you look really closely, all mirrors look like eyeballs.",
     voiceFile: "Joke 10.m4a"
 }
 
