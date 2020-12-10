@@ -162,9 +162,14 @@ socket.on('breakVote', breakVoteObject => {
 
 socket.on('breakDecision', breakDecisionObject => {
     // when the vote has been decided
+
+    playAudio("Break - failure.m4a");
+
+    // playAudio("Break - success.m4a");
 });
 
 socket.on('compliment', complimentObject => {
+
 });
 
 socket.on('askOpinion', askOpinionObject => {
