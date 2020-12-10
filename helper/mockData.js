@@ -3,7 +3,7 @@ const getRandomEntry = array => array[Math.floor(Math.random() * array.length)];
 
 
 const JOKES = [{
-    chatText: "My mexican uncle is taking anti anxiety pills. It's for hispanic attacks",
+    groupChatText: "My mexican uncle is taking anti anxiety pills. It's for hispanic attacks",
     voiceFile: undefined
 }];
 const MEMES = [];
