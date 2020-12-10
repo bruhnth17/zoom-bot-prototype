@@ -1,4 +1,5 @@
 const express = require("express");
+const Timer = require('tiny-timer');
 const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
@@ -16,6 +17,22 @@ io.on('connection', socket => {
 
     socket.on('joke', () => io.emit('joke', mockData.getJoke()));
     // socket.on('compliment', name => io.emit('compliment', mockData.getCompliment(name)));
+
+    socket.on('timer', obj => {
+         const millisToMinutesAndSeconds = (millis) => {
+            var minutes = Math.floor(millis / 60000);
+            var seconds = ((millis % 60000) / 1000).toFixed(0);
+            return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+        }
+
+        io.emit('timerStart', { speechFile: "Start%20timer"});
+
+
+        const timer = new Timer();
+        timer.on('tick', ms => io.emit('timerUpdate', { time: millisToMinutesAndSeconds(ms)}));
+        timer.on('done', () => io.emit('timerDone', { speechFile: "End%20timer"}));
+        timer.start(obj.minutes * 1000 * 60);
+    })
 });
 
 
