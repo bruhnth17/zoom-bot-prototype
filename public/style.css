@@ -1,5 +1,7 @@
-h1 {
-    color: blue;
+* {
+    font-family: "Open Sans";
+    color: #333;
+    font-weight: 600;
 }
 
 .description-field {
@@ -9,8 +11,9 @@ h1 {
     padding: 8px;
 }
 
-.description-field h6{
+.description-field h6 {
     font-size: 0.9rem;
+    text-align: center;
 }
 
 .btn-container {
@@ -21,6 +24,14 @@ h1 {
     margin-left: auto;
     bottom: 0;
     position: absolute;
+}
+
+.btn-container h6 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 800;
 }
 
 .row{
@@ -44,6 +55,7 @@ h1 {
 
 .bot-img{
     margin: auto;
+    padding-top: 50px;
     display: block;
 }
 
@@ -54,9 +66,11 @@ h1 {
     min-height: 100px;
     margin: 10px;
     padding: 15px;
+    margin-top: 40px;
 }
 
 .speech-bubble:after {
+
     content: '';
     position: absolute;
     left: 0;
@@ -145,4 +159,43 @@ div.color-3 button{
     background-color: #e4e4e4;
     padding: 12px;
     border-radius: 15px;
+}
+
+.btn {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.description-field {
+    margin-top: 20px;
+    height: 100px;
+}
+
+.description-field h6 {
+    font-size: 16px;
+}
+
+.bot-img.shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
 }

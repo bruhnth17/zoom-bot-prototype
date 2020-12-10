@@ -18,30 +18,25 @@ const micOnClick = () => {
 
 // Outgoing socket events
 const awkwardOnClick = () => {
-    playJingle();
     socket.emit('awkwardSilence')
 };
 
 // Outgoing socket events
 const workOnClick = () => {
-    playJingle();
     socket.emit('backToWork')
 };
 // Outgoing socket events
 const breakOnClick = () => {
-    playJingle();
     socket.emit('break')
 };
 
 // Outgoing socket events
 const randomOnClick = () => {
-    playJingle();
     socket.emit('randomPerson')
 };
 
 // Outgoing socket events
 const lostOnClick = () => {
-    playJingle();
     socket.emit('iAmLost')
 };
 
@@ -88,7 +83,6 @@ socket.on('opinion', opinionObject => {
 })
 
 socket.on('randomPerson', randomPersonObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -106,7 +100,6 @@ socket.on('randomPerson', randomPersonObject => {
 });
 
 socket.on('timerStart', timerStartObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -135,7 +128,6 @@ socket.on('timerDone', timerDoneObject => {
 });
 
 socket.on('passTheMic', iAmLostObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -152,7 +144,6 @@ socket.on('passTheMic', iAmLostObject => {
 });
 
 socket.on('backToWork', backToWorkObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -169,7 +160,6 @@ socket.on('backToWork', backToWorkObject => {
 });
 
 socket.on('awkwardSilence', awkwardSilenceObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -184,7 +174,8 @@ socket.on('awkwardSilence', awkwardSilenceObject => {
 });
 
 socket.on('iAmLost', iAmLostObject => {
-    changeEyecolor();
+    playJingle();
+
     setTimeout(function () {
 
         // bubble
@@ -223,7 +214,6 @@ socket.on('breakDecision', breakDecision => {
 });
 
 socket.on('compliment', complimentObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout( () => {
@@ -238,7 +228,6 @@ socket.on('compliment', complimentObject => {
 });
 
 socket.on('showMeme', showMemeObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -256,7 +245,6 @@ socket.on('showMeme', showMemeObject => {
 });
 
 socket.on('iceBreaker', iceBreakerObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -272,7 +260,6 @@ socket.on('iceBreaker', iceBreakerObject => {
 
 // joke object = {groupChatText, speechFile}
 socket.on('joke', jokeObject => {
-    changeEyecolor();
     playJingle();
 
     setTimeout(function () {
@@ -290,8 +277,15 @@ socket.on('joke', jokeObject => {
 });
 
 const playJingle = () => {
+    document.getElementById("botImg").className += " shake"
+
     const audio = new Audio('audio/jingle.wav');
     audio.play();
+
+    setTimeout(function () {
+        document.getElementById("botImg").className = "bot-img"
+
+    }, 1500);
 
 }
 
@@ -380,15 +374,6 @@ const generateNames = async () => {
         };
         nameListOpinion.append(newButton);
     }
-}
-
-function changeEyecolor() {
-    var eyecolor = document.getElementById("eyecolor");
-    eyecolor.classList.toggle("eyecolor");
-
-    setTimeout(function () {
-        eyecolor.classList.toggle("eyecolor");
-    }, 500);
 }
 
 const breakVote = vote => {
