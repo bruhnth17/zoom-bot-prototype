@@ -30,6 +30,11 @@ const workOnClick = () => {
     playJingle();
     socket.emit('backToWork')
 };
+// Outgoing socket events
+const breakOnClick = () => {
+    playJingle();
+    socket.emit('breakVote')
+};
 
 // Outgoing socket events
 const lostOnClick = () => {
@@ -71,9 +76,8 @@ socket.on('timerStart', timerStartObject => {
     playJingle();
 
     setTimeout(function () {
-        console.log(`audio/${timerStartObject.speechFile}.m4a`);
-        const audio = new Audio(`audio/${timerStartObject.speechFile}.m4a`);
-        audio.play();
+
+        playAudio("Start timer.m4a");
 
     }, 1000);
 });
@@ -92,9 +96,7 @@ socket.on('timerDone', timerDoneObject => {
 
     setTimeout(function () {
 
-        console.log(`audio/${timerDoneObject.speechFile}.m4a`);
-        const audio = new Audio(`audio/${timerDoneObject.speechFile}.m4a`);
-        audio.play();
+        playAudio("End timer.m4a");
 
     }, 1000);
 });
@@ -150,6 +152,12 @@ socket.on('iAmLost', iAmLostObject => {
 
 socket.on('breakVote', breakVoteObject => {
     // when someone pressed the vote button
+    const breakModal = document.getElementById("breakModal");
+    console.log("show modal request")
+    breakModal.classList.add('show');
+    breakModal.style.display = "block";
+    breakModal.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+
 });
 
 socket.on('breakDecision', breakDecisionObject => {

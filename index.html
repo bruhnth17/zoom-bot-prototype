@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <title>Zoom Bot</title>
     <meta charset="utf-8">
@@ -14,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link href="style.css" rel="stylesheet">
 </head>
-
+<body id="bd">
 <div class="row">
     <div class="col-6 fix-padding-right ">
         <div id="bot-btn" style="background-color: white; padding: 8px" onclick="openPersonalTab()">BOT CHAT</div>
@@ -53,7 +54,7 @@
         <h6 class="small-top-margin">Help our team</h6>
         <div class="row color-1">
             <div class="col-6 fix-padding-right">
-                <button id="b1" data-toggle="modal" data-target="#timerModal" type="button"
+                <button id="b1" onclick="timerOnClick()" data-toggle="modal" data-target="#timerModal" type="button"
                         class="btn btn-primary btn-block">
                     TIMER
                 </button>
@@ -61,7 +62,7 @@
                 <button id="b4" onclick="workOnClick()" type="button" class="btn btn-primary btn-block">BACK TO WORK!</button>
             </div>
             <div class="col-6 fix-padding-left">
-                <button id="b7" data-toggle="modal" data-target="#breakModal" type="button"
+                <button id="b7" onclick="breakOnClick()"  type="button"
                         class="btn btn-primary btn-block">BREAK
                 </button>
 
@@ -162,7 +163,6 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-
                 <div class="row">
                     <div class="col-6 fix-padding-right">
                         <button type="button" class="btn btn-primary btn-block">YES</button>

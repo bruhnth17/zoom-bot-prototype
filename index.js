@@ -24,6 +24,7 @@ io.on('connection', socket => {
     socket.on('backToWork', () => io.emit('backToWork'));
     socket.on('awkwardSilence', () => io.emit('awkwardSilence'));
     socket.on('iAmLost', () => io.emit('iAmLost'));
+    socket.on('breakVote', () => io.emit('breakVote'));
     // socket.on('compliment', () => io.emit('compliment', mockData.getCompliment(name)));
     // socket.on('askOpinion', () => io.emit('askOpinion', mockData.getAskOpinion()));
 
