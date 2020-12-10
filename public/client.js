@@ -1,13 +1,29 @@
 const socket = io();
 
 // Outgoing socket events
-const jokeOnClick = () => socket.emit('joke');
+const jokeOnClick = () => {
+    // Example how to send audio TODO: delete later
+    playJingle();
+    socket.emit('joke')
+};
 
 const timerOnClick = () => socket.emit('timer');
 
 // Handler for an incoming joke
 
+// randomPersonObject = {groupChatText, speechFile}
 socket.on('randomPerson', randomPersonObject => {
+    playJingle();
+
+    setTimeout(function (){
+
+        // put text in group chat
+        // play speech file
+
+        // const audio = new Audio(`audio/${randomPersonObject.speechFile}.mp3`);
+        // audio.play();
+
+    }, 1000);
 });
 
 socket.on('passTheMic', passTheMicObject => {
@@ -51,6 +67,11 @@ socket.on('joke', jokeObject => {
     newListItem.appendChild(paragraphElement);
     list.appendChild(newListItem);
 });
+
+const playJingle = () => {
+    const audio = new Audio('audio/jingle.wav');
+    audio.play();
+}
 
 
 
