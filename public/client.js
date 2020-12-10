@@ -302,14 +302,16 @@ const changeName = () => {
  * Used to automatically genereate names of connected people
  */
 const generateNames = async () => {
-    const nameList = document.getElementById("dynamicNameList")
-    nameList.innerHTML = ''; // empty
+    const nameListCompliments = document.getElementById("dynamicNameList1")
+    const nameListOpinion = document.getElementById("dynamicNameList2")
+    nameListCompliments.innerHTML = ''; // empty
+    nameListOpinion.innerHTML = ''; // empty
 
     const response = await fetch('/users');
     const users = await response.json(); //extract JSON from the http response
 
-    for (const user of users) {
-        const newButton = document.createElement('button');
+    for (let user of users) {
+        let newButton = document.createElement('button');
         newButton.type = "button"
         newButton.className = "btn btn-primary btn-block"
         newButton.innerText = user.name  === "" ? "<no name>" : user.name;
@@ -318,7 +320,20 @@ const generateNames = async () => {
                complimentClick(user.name);
             }
         };
-        nameList.append(newButton);
+        nameListCompliments.append(newButton);
+    }
+
+    for (let user of users) {
+        let newButton = document.createElement('button');
+        newButton.type = "button"
+        newButton.className = "btn btn-primary btn-block"
+        newButton.innerText = user.name  === "" ? "<no name>" : user.name;
+        newButton.onclick = () => {
+            if(user.name !== "") {
+                opinionClick(user.name);
+            }
+        };
+        nameListOpinion.append(newButton);
     }
 }
 
