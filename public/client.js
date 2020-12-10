@@ -101,6 +101,11 @@ socket.on('showMeme', showMemeObject => {
     const bubble = document.getElementById('speechBubble');
     bubble.innerText = "I have sent a meme to the group chat";
 
+    setTimeout( () => {
+        const audio = new Audio(`audio/Meme.m4a`);
+        audio.play();
+    }, 1000);
+
     // group
     const groupChat = document.getElementById("group-container");
     const memeImg = document.createElement("img");
