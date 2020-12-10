@@ -39,6 +39,49 @@ h1 {
 }
 
 .bot-img{
-    width: 100px;
+    width: 100%;
     padding-left: 10px;
+    padding-top: 20px;
+    max-width: 110px;
+    min-width: 70px;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #e7edee;
+    border-radius: .4em;
+    min-height: 100px;
+    margin: 10px;
+    padding: 15px;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 33px solid transparent;
+    border-right-color: #e7edee;
+    border-left: 0;
+    border-bottom: 0;
+    margin-top: -16.5px;
+    margin-left: -33px;
+}
+
+.small-top-margin{
+    margin-top: 10px;
+}
+
+div.color-1 button{
+    background-color: #265B8B;
+}
+
+div.color-2 button{
+    background-color: #1181C8;
+}
+
+div.color-3 button{
+    background-color: #84C7F2;
 }
