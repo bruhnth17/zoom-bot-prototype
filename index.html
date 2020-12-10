@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
+    <link rel="shortcut icon" href="#" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -20,11 +21,11 @@
     </div>
     <div class="col-6 fix-padding-right">
         <div id="group-btn" style="background-color: lightgray; padding: 8px" onclick="openGroupTab()">
-            <i class="fa fa-envelope msg hide" aria-hidden="true"></i>GROUP CHAT</div>
+            <i class="fa fa-envelope hide" id="msg" aria-hidden="true"></i>GROUP CHAT</div>
     </div>
 </div>
 
-<div id="group" style="display: none">
+<div id="group" class="hide">
     <div id="group-container">
     </div>
 </div>
@@ -236,12 +237,15 @@
     function openGroupTab() {
         var personalContent = document.getElementById("personal");
         var groupContent = document.getElementById("group");
-        personalContent.style.display = "none";
-        groupContent.style.display = "block";
+        personalContent.classList.add("hide");
+        groupContent.classList.remove("hide");
         var botBtn = document.getElementById("bot-btn");
         var groupBtn = document.getElementById("group-btn");
         botBtn.style.backgroundColor = "lightgray";
         groupBtn.style.backgroundColor = "white";
+
+        var msg = document.getElementById("msg");
+        msg.classList.add("hide");
     }
 
     function openPersonalTab() {
@@ -249,8 +253,8 @@
         var groupBtn = document.getElementById("group-btn");
         var personalContent = document.getElementById("personal");
         var groupContent = document.getElementById("group");
-        personalContent.style.display = "block";
-        groupContent.style.display = "none";
+        personalContent.classList.remove("hide");
+        groupContent.classList.add("hide");
         botBtn.style.backgroundColor = "white";
         groupBtn.style.backgroundColor = "lightgray";
     }

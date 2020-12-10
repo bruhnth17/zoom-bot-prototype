@@ -91,11 +91,17 @@ div.color-3 button{
     padding-left: 12px;
 }
 
-.msg{
+#msg{
     margin-right: 10px;
     color: orangered;
 }
 
 #group-container{
     padding: 16px;
+}
+
+.memeImg{
+    max-width: 300px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }

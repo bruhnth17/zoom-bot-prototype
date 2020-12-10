@@ -10,7 +10,12 @@ const JOKES = [{
 const MEMES = [{
     groupChatText: "https://i.redd.it/2qyh9ydixf351.jpg",
     voiceFile: undefined
-}];
+},{
+    groupChatText: "https://i.redd.it/o2oiwwq4o7061.jpg",
+    voiceFile: undefined
+}
+
+];
 const ICEBREAKERS = [];
 // ...
 

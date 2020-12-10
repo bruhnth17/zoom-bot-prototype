@@ -106,8 +106,11 @@ socket.on('showMeme', showMemeObject => {
     const memeImg = document.createElement("img");
     const br = document.createElement("br");
     memeImg.src = showMemeObject.groupChatText;
+    memeImg.classList.add("memeImg");
     groupChat.appendChild(memeImg);
     groupChat.appendChild(br);
+
+    showNotification();
 
 });
 
@@ -131,6 +134,8 @@ socket.on('joke', jokeObject => {
     paragraphElement.innerText = jokeObject.groupChatText;
     groupChat.appendChild(paragraphElement);
     groupChat.appendChild(br);
+
+    showNotification();
 });
 
 const playJingle = () => {
@@ -138,7 +143,15 @@ const playJingle = () => {
     audio.play();
 }
 
-
+const showNotification = () => {
+    // show notification
+    const groupTab = document.getElementById("group");
+    if(groupTab.classList.contains("hide")){
+        console.log("here")
+        const notification = document.getElementById("msg");
+        notification.classList.remove("hide");
+    }
+}
 
 
 
