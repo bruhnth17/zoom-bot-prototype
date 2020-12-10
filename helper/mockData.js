@@ -66,16 +66,16 @@ const JOKES = [{
     groupChatText: "Here's a joke for you, guys. What do you call a guy with a rubber toe. Roberto.",
     voiceFile: "Joke 6.m4a"
 }, {
-    groupChatText: "Here's a joke for you, guys.",
+    groupChatText: "Here's a joke for you, guys. When you look really closely, all mirrors look like eyeballs.",
     voiceFile: "Joke 7.m4a"
 }, {
-    groupChatText: "Here's a joke for you, guys.",
+    groupChatText: "Here's a joke for you, guys. A blind man walks into a bar. And a table. And a chair.",
     voiceFile: "Joke 8.m4a"
 }, {
-    groupChatText: "Here's a joke for you, guys.",
+    groupChatText: "Here's a joke for you, guys. Where do you find a cow with no legs? Right where you left it.",
     voiceFile: "Joke 9.m4a"
 }, {
-    groupChatText: "Here's a joke for you, guys. When you look really closely, all mirrors look like eyeballs.",
+    groupChatText: "Here's a joke for you, guys. I think I would like a job cleaning mirrors. It's just something I could really see myself doing, you know?",
     voiceFile: "Joke 10.m4a"
 }
 

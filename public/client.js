@@ -284,10 +284,12 @@ function playAudio(name) {
 }
 
 function sendMemeToGroup(meme) {
-
     const groupChat = document.getElementById("group-container");
     const memeImg = document.createElement("img");
     const br = document.createElement("br");
+    const bot = document.createElement("h6");
+    bot.innerHTML = "From Bot";
+    groupChat.appendChild(bot);
     memeImg.src = meme;
     memeImg.classList.add("memeImg");
     groupChat.appendChild(memeImg);
@@ -297,15 +299,16 @@ function sendMemeToGroup(meme) {
 function sendTextToGroup(text) {
     const groupChat = document.getElementById("group-container");
     const paragraphElement = document.createElement("span");
+    const divElement = document.createElement("div");
     const br = document.createElement("br");
-    const br2 = document.createElement("br");
-    const bot = document.createElement("span");
+    const bot = document.createElement("h6");
+    divElement.classList.add("group-msg-bubble");
     bot.innerHTML = "From Bot";
     paragraphElement.innerText = text;
     groupChat.appendChild(bot);
+    divElement.appendChild(paragraphElement);
+    groupChat.appendChild(divElement);
     groupChat.appendChild(br);
-    groupChat.appendChild(paragraphElement);
-    groupChat.appendChild(br2);
 }
 
 const showNotification = () => {
