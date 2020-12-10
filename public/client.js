@@ -37,6 +37,12 @@ const breakOnClick = () => {
 };
 
 // Outgoing socket events
+const randomOnClick = () => {
+    playJingle();
+    socket.emit('randomPerson')
+};
+
+// Outgoing socket events
 const lostOnClick = () => {
     playJingle();
     socket.emit('iAmLost')
@@ -54,20 +60,26 @@ const timerOnClick = minutes => {
     })
 };
 
-// Handler for an incoming joke
-
-// randomPersonObject = {groupChatText, speechFile}
+// randomPersonObject = {groupChatText, voiceFile}
 socket.on('randomPerson', randomPersonObject => {
-    playJingle();
 
     setTimeout(function () {
 
-        // put text in group chat
-        // play speech file
+        showNotification();
 
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have randomly selected someone";
 
-        // const audio = new Audio(`audio/${randomPersonObject.speechFile}.mp3`);
-        // audio.play();
+        // group
+        const groupChat = document.getElementById("group-container");
+        const paragraphElement = document.createElement("span");
+        const br = document.createElement("br");
+        paragraphElement.innerText = randomPersonObject.groupChatText;
+        groupChat.appendChild(paragraphElement);
+        groupChat.appendChild(br);
+
+        playAudio(randomPersonObject.voiceFile);
 
     }, 1000);
 });
