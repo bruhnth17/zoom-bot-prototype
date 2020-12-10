@@ -2,7 +2,6 @@ const socket = io();
 
 // Outgoing socket events
 const jokeOnClick = () => {
-    // Example how to send audio TODO: delete later
     playJingle();
     socket.emit('joke')
 };
@@ -165,7 +164,6 @@ socket.on('iAmLost', iAmLostObject => {
 socket.on('breakVote', breakVoteObject => {
     // when someone pressed the vote button
     const breakModal = document.getElementById("breakModal");
-    console.log("show modal request")
     breakModal.classList.add('show');
     breakModal.style.display = "block";
     breakModal.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
@@ -185,6 +183,7 @@ socket.on('compliment', complimentObject => {
 });
 
 socket.on('askOpinion', askOpinionObject => {
+
 });
 
 socket.on('showMeme', showMemeObject => {
@@ -258,7 +257,6 @@ const showNotification = () => {
     // show notification
     const groupTab = document.getElementById("group");
     if (groupTab.classList.contains("hide")) {
-        console.log("here")
         const notification = document.getElementById("msg");
         notification.classList.remove("hide");
     }

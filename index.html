@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
-    <link rel="shortcut icon" href="#" />
+    <link rel="shortcut icon" href="#"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,13 +16,14 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body id="bd">
-<div class="row">
+<div class="row " style="cursor: pointer">
     <div class="col-6 fix-padding-right ">
         <div id="bot-btn" style="background-color: white; padding: 8px" onclick="openPersonalTab()">BOT CHAT</div>
     </div>
     <div class="col-6 fix-padding-right">
         <div id="group-btn" style="background-color: lightgray; padding: 8px" onclick="openGroupTab()">
-            <i class="fa fa-envelope hide" id="msg" aria-hidden="true"></i>GROUP CHAT</div>
+            <i class="fa fa-envelope hide" id="msg" aria-hidden="true"></i>GROUP CHAT
+        </div>
     </div>
 </div>
 
@@ -47,8 +48,6 @@
     </div>
 
 
-
-
     <div class="btn-container">
         <!--    The buttons-->
         <h6 class="small-top-margin">Help our team</h6>
@@ -58,24 +57,31 @@
                         class="btn btn-primary btn-block">
                     TIMER
                 </button>
-                <button id="b2" onclick="randomOnClick()" type="button" class="btn btn-primary btn-block">RANDOM PERSON</button>
-                <button id="b4" onclick="workOnClick()" type="button" class="btn btn-primary btn-block">BACK TO WORK!</button>
+                <button id="b2" onclick="randomOnClick()" type="button" class="btn btn-primary btn-block">RANDOM
+                    PERSON
+                </button>
+                <button id="b4" onclick="workOnClick()" type="button" class="btn btn-primary btn-block">BACK TO WORK!
+                </button>
             </div>
             <div class="col-6 fix-padding-left">
-                <button id="b7" onclick="breakOnClick()"  type="button"
+                <button id="b7" onclick="breakOnClick()" type="button"
                         class="btn btn-primary btn-block">BREAK
                 </button>
 
-                <button id="b3" onclick="micOnClick()" type="button" class="btn btn-primary btn-block">PASS THE MIC</button>
+                <button id="b3" onclick="micOnClick()" type="button" class="btn btn-primary btn-block">PASS THE MIC
+                </button>
 
-                <button id="b5" onclick="awkwardOnClick()"type="button" class="btn btn-primary btn-block">AWKWARD SILENCE</button>
+                <button id="b5" onclick="awkwardOnClick()" type="button" class="btn btn-primary btn-block">AWKWARD
+                    SILENCE
+                </button>
             </div>
         </div>
 
         <h6 class="small-top-margin">Engage the team members</h6>
         <div class="row color-2">
             <div class="col-6 fix-padding-right">
-                <button id="b6" onclick="lostOnClick()" type="button" class="btn btn-primary btn-block">I AM LOST</button>
+                <button id="b6" onclick="lostOnClick()" type="button" class="btn btn-primary btn-block">I AM LOST
+                </button>
                 <button id="b9" data-toggle="modal" data-target="#opinionModal" type="button"
                         class="btn btn-primary btn-block">ASK OPINION
                 </button>
@@ -91,7 +97,7 @@
         <div class="row color-3">
             <div class="col-6 fix-padding-right">
 
-                <button id="b11"  onclick="iceBreakerOnClick()" type="button" class="btn btn-block">ICE BREAKER</button>
+                <button id="b11" onclick="iceBreakerOnClick()" type="button" class="btn btn-block">ICE BREAKER</button>
 
                 <button id="b12" onclick="jokeOnClick()" type="button" class="btn  btn-block">JOKE</button>
             </div>
@@ -122,35 +128,43 @@
     </div>
 </div>
 
-    <!--    MODALS-->
-    <!-- TIMER MODAL -->
-    <div class="modal fade" id="timerModal" role="dialog">
-        <div class="modal-dialog modal-sm">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Set timer</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-6 fix-padding-right">
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(5)">5 MINUTES</button>
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(15)">15 MINUTES</button>
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(25)">25 MINUTES</button>
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(45)">45 MINUTES</button>
-                        </div>
-                        <div class="col-6 fix-padding-left">
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(10)">10 MINUTES</button>
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(20)">20 MINUTES</button>
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(30)">30 MINUTES</button>
-                            <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(60)">1 HOUR</button>
-                        </div>
+<!--    MODALS-->
+<!-- TIMER MODAL -->
+<div class="modal fade" id="timerModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Set timer</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 fix-padding-right">
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(5)">5 MINUTES
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(15)">15 MINUTES
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(25)">25 MINUTES
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(45)">45 MINUTES
+                        </button>
+                    </div>
+                    <div class="col-6 fix-padding-left">
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(10)">10 MINUTES
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(20)">20 MINUTES
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(30)">30 MINUTES
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block" onclick="timerOnClick(60)">1 HOUR
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- BREAK MODAL -->
@@ -160,15 +174,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Do you want to take a break?</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close breakbtn" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6 fix-padding-right">
-                        <button type="button" class="btn btn-primary btn-block">YES</button>
+                        <button type="button" class="breakbtn btn btn-primary btn-block">YES</button>
                     </div>
                     <div class="col-6 fix-padding-left">
-                        <button type="button" class="btn btn-primary btn-block">NO</button>
+                        <button type="button" class="breakbtn btn btn-primary btn-block">NO</button>
                     </div>
                 </div>
             </div>
@@ -258,6 +272,13 @@
         botBtn.style.backgroundColor = "white";
         groupBtn.style.backgroundColor = "lightgray";
     }
+</script>
+
+<script>
+        $(".breakbtn").click(function () {
+            document.getElementById("breakModal").style.display = "none";
+        });
+
 </script>
 
 </body>

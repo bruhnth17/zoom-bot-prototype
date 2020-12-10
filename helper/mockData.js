@@ -19,6 +19,24 @@ const RANDOMPERSON = [{
 }
 ];
 
+const COMPLIMENT = [{
+    groupChatText: "Adrian",
+    voiceFile: "Compliment - Adrian.m4a"
+}, {
+    groupChatText: "Catarina",
+    voiceFile: "Compliment - Catarina.m4a"
+}, {
+    groupChatText: "Golina",
+    voiceFile: "Compliment - Golina.m4a"
+}, {
+    groupChatText: "Henrik",
+    voiceFile: "Compliment - Henrik.m4a"
+}, {
+    groupChatText: "Miriam",
+    voiceFile: "Compliment - Miriam.m4a"
+}
+];
+
 const JOKES = [{
     groupChatText: "text",
     voiceFile: "Joke 1.m4a"
