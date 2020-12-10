@@ -58,23 +58,23 @@
                     TIMER
                 </button>
                 <button id="b2" type="button" class="btn btn-primary btn-block">RANDOM PERSON</button>
-                <button id="b4" type="button" class="btn btn-primary btn-block">BACK TO WORK!</button>
+                <button id="b4" onclick="workOnClick()" type="button" class="btn btn-primary btn-block">BACK TO WORK!</button>
             </div>
             <div class="col-6 fix-padding-left">
                 <button id="b7" data-toggle="modal" data-target="#breakModal" type="button"
                         class="btn btn-primary btn-block">BREAK
                 </button>
 
-                <button id="b3" type="button" class="btn btn-primary btn-block">PASS THE MIC</button>
+                <button id="b3" onclick="micOnClick()" type="button" class="btn btn-primary btn-block">PASS THE MIC</button>
 
-                <button id="b5" type="button" class="btn btn-primary btn-block">AWKWARD SILENCE</button>
+                <button id="b5" onclick="awkwardOnClick()"type="button" class="btn btn-primary btn-block">AWKWARD SILENCE</button>
             </div>
         </div>
 
         <h6 class="small-top-margin">Engage the team members</h6>
         <div class="row color-2">
             <div class="col-6 fix-padding-right">
-                <button id="b6" type="button" class="btn btn-primary btn-block">I AM LOST</button>
+                <button id="b6" onclick="lostOnClick()" type="button" class="btn btn-primary btn-block">I AM LOST</button>
                 <button id="b9" data-toggle="modal" data-target="#opinionModal" type="button"
                         class="btn btn-primary btn-block">ASK OPINION
                 </button>
@@ -90,7 +90,7 @@
         <div class="row color-3">
             <div class="col-6 fix-padding-right">
 
-                <button id="b11" type="button" class="btn btn-block">ICE BREAKER</button>
+                <button id="b11"  onclick="iceBreakerOnClick()" type="button" class="btn btn-block">ICE BREAKER</button>
 
                 <button id="b12" onclick="jokeOnClick()" type="button" class="btn  btn-block">JOKE</button>
             </div>

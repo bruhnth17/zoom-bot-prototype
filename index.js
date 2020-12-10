@@ -19,7 +19,13 @@ io.on('connection', socket => {
 
     socket.on('joke', () => io.emit('joke', mockData.getJoke()));
     socket.on('showMeme', () => io.emit('showMeme', mockData.getMeme()));
-    // socket.on('compliment', name => io.emit('compliment', mockData.getCompliment(name)));
+    socket.on('iceBreaker', () => io.emit('iceBreaker', mockData.getIceBreaker()));
+    socket.on('passTheMic', () => io.emit('passTheMic'));
+    socket.on('backToWork', () => io.emit('backToWork'));
+    socket.on('awkwardSilence', () => io.emit('awkwardSilence'));
+    socket.on('iAmLost', () => io.emit('iAmLost'));
+    // socket.on('compliment', () => io.emit('compliment', mockData.getCompliment(name)));
+    // socket.on('askOpinion', () => io.emit('askOpinion', mockData.getAskOpinion()));
 
     socket.on('timer', obj => {
 
