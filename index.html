@@ -122,6 +122,25 @@
 </div>
 
     <!--    MODALS-->
+    <!-- NAME MODAL --->
+    <div class="modal" tabindex="-1" role="dialog" id="nameModel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Please enter your name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="your name" oninput="changeName()" id="nameInput">
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- TIMER MODAL -->
     <div class="modal fade" id="timerModal" role="dialog">
         <div class="modal-dialog modal-sm">
@@ -234,6 +253,12 @@
 
 <!--Change between tabs-->
 <script>
+    $(document).ready(function() {
+        $('#nameModel').modal({
+            show: true
+        })
+    });
+
     function openGroupTab() {
         var personalContent = document.getElementById("personal");
         var groupContent = document.getElementById("group");

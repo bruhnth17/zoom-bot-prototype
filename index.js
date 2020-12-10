@@ -6,6 +6,7 @@ const io = require('socket.io')(http);
 const mockData = require(__dirname + '/helper/mockData.js');
 
 let TIMER_IN_USE = false;
+let USERS = []
 
 app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
@@ -15,7 +16,17 @@ app.get('/', (req, res) => {
 
 // Handler for incoming socket messages from clients
 io.on('connection', socket => {
-    console.log('a user connected');
+    USERS.push({
+        id: socket.id,
+        name: ""
+    })
+
+    socket.on('nameChange', name => {
+        USERS = USERS.map(user =>
+            user.id === socket.id ? { ...user, name: name } : user
+        );
+    })
+
 
     socket.on('joke', () => io.emit('joke', mockData.getJoke()));
     socket.on('showMeme', () => io.emit('showMeme', mockData.getMeme()));
@@ -44,7 +55,13 @@ io.on('connection', socket => {
         });
         timer.start(obj.minutes * 1000 * 60);
     })
+
+    socket.on('disconnect', () => {
+        USERS = USERS.filter( el => el.id !== socket.id );
+    })
 });
+
+
 
 
 let port = process.env.PORT; // needed for export to heroku
@@ -55,3 +72,5 @@ if (port == null || port == "") {
 http.listen(port, () => {
     console.log(`listening on ${port}`);
 });
+
+

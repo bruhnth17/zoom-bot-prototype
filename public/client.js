@@ -168,5 +168,11 @@ const showNotification = () => {
     }
 }
 
+const changeName = () => {
+    const newName = document.getElementById("nameInput").value;
+    console.log(newName);
+    socket.emit("nameChange", newName);
+}
+
 
 
