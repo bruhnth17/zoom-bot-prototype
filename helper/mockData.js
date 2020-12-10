@@ -110,12 +110,27 @@ const JOKES = [{
 ];
 
 const MEMES = [{
-    groupChatText: "https://i.redd.it/2qyh9ydixf351.jpg",
-    voiceFile: undefined
-},{
-    groupChatText: "https://i.redd.it/o2oiwwq4o7061.jpg",
-    voiceFile: undefined
-}];
+    groupChatText: "https://i.redd.it/2qyh9ydixf351.jpg"
+}, {
+    groupChatText: "https://i.redd.it/o2oiwwq4o7061.jpg"
+}, {
+    groupChatText: "https://i.redd.it/swtnvpd3r3z51.jpg"
+}, {
+    groupChatText: "https://i.redd.it/9epxlzevp3m41.jpg"
+}, {
+    groupChatText: "https://i.redd.it/d0c3d5ohhx161.jpg"
+}, {
+    groupChatText: "https://external-preview.redd.it/wVya2b2lXP9ZvUNC0XnQeK2cUR5lkWBCkCnFN3bnbkU.jpg?auto=webp&s=101f96e778afb44a50c2cf399d732dc8a255670c"
+}, {
+    groupChatText: "https://i.redd.it/na1jtt5nktw51.jpg"
+}, {
+    groupChatText: "https://i.redd.it/cfd8uqhlyko51.jpg"
+}, {
+    groupChatText: "https://i.redd.it/d0c3d5ohhx161.jpg"
+}, {
+    groupChatText: "https://sayingimages.com/wp-content/uploads/lets-divide-the-work-equally-group-memes.jpg"
+}
+];
 
 const ICEBREAKERS = [{
     groupChatText: "ice breaker 1",
@@ -126,8 +141,8 @@ const ICEBREAKERS = [{
 const _getJoke = () => getRandomEntry(JOKES);
 const _getMeme = () => getRandomEntry(MEMES);
 const _getCompliment = name => {
-        const found = COMPLIMENTS.find(compliment => compliment.name.toLowerCase() == name.toLowerCase());
-        return found ? found : {name: name, groupChatText: `You are doing and awesome job ${name}!`}
+    const found = COMPLIMENTS.find(compliment => compliment.name.toLowerCase() == name.toLowerCase());
+    return found ? found : {name: name, groupChatText: `You are doing and awesome job ${name}!`}
 }
 const _getIceBreaker = () => getRandomEntry(ICEBREAKERS);
 const _getRandomPerson = () => getRandomEntry(RANDOMPERSON);
