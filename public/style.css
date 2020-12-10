@@ -39,11 +39,8 @@ h1 {
 }
 
 .bot-img{
-    width: 100%;
-    padding-left: 10px;
-    padding-top: 20px;
-    max-width: 110px;
-    min-width: 70px;
+    margin: auto;
+    display: block;
 }
 
 .speech-bubble {
@@ -132,4 +129,8 @@ div.color-3 button{
 
 .padding0{
     padding: 0px;
+}
+
+.eyecolor{
+    fill: #fab423;
 }
