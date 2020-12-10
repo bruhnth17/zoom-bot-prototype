@@ -69,32 +69,42 @@ socket.on('timerDone', timerDoneObject => {
 
 
 socket.on('passTheMic', passTheMicObject => {
+    playJingle();
 });
 
 socket.on('backToWork', backToWorkObject => {
+    playJingle();
 });
 
 socket.on('awkwardSilence', awkwardSilenceObject => {
+    playJingle();
 });
 
 socket.on('iAmLost', iAmLostObject => {
+    playJingle();
 });
 
 socket.on('breakVote', breakVoteObject => {
+    playJingle();
     // when someone pressed the vote button
 });
 
 socket.on('breakDecision', breakDecisionObject => {
+    playJingle();
     // when the vote has been decided
 });
 
 socket.on('compliment', iAmLostObject => {
+    playJingle();
 });
 
 socket.on('askOpinion', askOpinionObject => {
+    playJingle();
 });
 
 socket.on('showMeme', showMemeObject => {
+    playJingle();
+
     // bubble
     const bubble = document.getElementById('speechBubble');
     bubble.innerText = "I have sent a meme to the group chat";
@@ -118,6 +128,7 @@ socket.on('showMeme', showMemeObject => {
 });
 
 socket.on('iceBreaker', iceBreakerObject => {
+    playJingle();
     // bubble
     const bubble = document.getElementById('speechBubble');
     bubble.innerText = "I have proposed an ice breaker activity";
@@ -126,6 +137,7 @@ socket.on('iceBreaker', iceBreakerObject => {
 
 // joke object = {groupChatText, speechFile}
 socket.on('joke', jokeObject => {
+    playJingle();
     // bubble
     const bubble = document.getElementById('speechBubble');
     bubble.innerText = "I sent a joke in the group chat";
