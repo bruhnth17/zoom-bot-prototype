@@ -2,7 +2,6 @@ const socket = io();
 
 // Outgoing socket events
 const jokeOnClick = () => {
-    // Example how to send audio TODO: delete later
     socket.emit('joke')
 };
 
@@ -11,11 +10,53 @@ const memeOnClick = () => {
     socket.emit('showMeme')
 };
 
+// Outgoing socket events
+const micOnClick = () => {
+    playJingle();
+    socket.emit('passTheMic')
+};
+
+// Outgoing socket events
+const awkwardOnClick = () => {
+    playJingle();
+    socket.emit('awkwardSilence')
+};
+
+// Outgoing socket events
+const workOnClick = () => {
+    playJingle();
+    socket.emit('backToWork')
+};
+// Outgoing socket events
+const breakOnClick = () => {
+    playJingle();
+    socket.emit('breakVote')
+};
+
+// Outgoing socket events
+const randomOnClick = () => {
+    playJingle();
+    socket.emit('randomPerson')
+};
+
+// Outgoing socket events
+const lostOnClick = () => {
+    playJingle();
+    socket.emit('iAmLost')
+};
+
+// Outgoing socket events
+const iceBreakerOnClick = () => {
+    playJingle();
+    socket.emit('iceBreaker')
+};
+
 const timerOnClick = minutes => {
     socket.emit('timer', {
         minutes: minutes
     })
 };
+
 
 const complimentClick = name => {
     socket.emit('compliment', {
@@ -23,19 +64,22 @@ const complimentClick = name => {
     })
 }
 
-// Handler for an incoming joke
-
-// randomPersonObject = {groupChatText, speechFile}
 socket.on('randomPerson', randomPersonObject => {
-    playJingle();
+    setTimeout(function () {
+        showNotification();
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have randomly selected someone";
 
-    setTimeout(function (){
+        // group
+        const groupChat = document.getElementById("group-container");
+        const paragraphElement = document.createElement("span");
+        const br = document.createElement("br");
+        paragraphElement.innerText = randomPersonObject.groupChatText;
+        groupChat.appendChild(paragraphElement);
+        groupChat.appendChild(br);
 
-        // put text in group chat
-        // play speech file
-
-        // const audio = new Audio(`audio/${randomPersonObject.speechFile}.mp3`);
-        // audio.play();
+        playAudio(randomPersonObject.voiceFile);
 
     }, 1000);
 });
@@ -43,19 +87,17 @@ socket.on('randomPerson', randomPersonObject => {
 socket.on('timerStart', timerStartObject => {
     playJingle();
 
-    setTimeout(function (){
-        console.log(`audio/${timerStartObject.speechFile}.m4a`);
-        const audio = new Audio(`audio/${timerStartObject.speechFile}.m4a`);
-        audio.play();
+    setTimeout(function () {
+
+        playAudio("Start timer.m4a");
 
     }, 1000);
 });
 
 socket.on('timerUpdate', timerUpdateObject => {
-    console.log(timerUpdateObject.time)
     const timer = document.getElementById('timer');
     const timerText = document.createElement("span");
-    timer.innerText = "Timer: "+ timerUpdateObject.time;
+    timer.innerText = "Timer: " + timerUpdateObject.time;
     timer.appendChild(timerText);
 
 });
@@ -63,41 +105,80 @@ socket.on('timerUpdate', timerUpdateObject => {
 socket.on('timerDone', timerDoneObject => {
     playJingle();
 
-    setTimeout(function (){
+    setTimeout(function () {
 
-        console.log(`audio/${timerDoneObject.speechFile}.m4a`);
-        const audio = new Audio(`audio/${timerDoneObject.speechFile}.m4a`);
-        audio.play();
+        playAudio("End timer.m4a");
 
     }, 1000);
 });
 
-
-
-socket.on('passTheMic', passTheMicObject => {
+socket.on('passTheMic', iAmLostObject => {
     playJingle();
+
+    setTimeout(function () {
+
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have passed the mic";
+
+        playAudio("Pass the mic.m4a");
+
+    }, 1000);
 });
 
 socket.on('backToWork', backToWorkObject => {
-    playJingle();
+    setTimeout(function () {
+
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have asked the group to go back to work";
+
+        playAudio("Back to work.m4a");
+
+    }, 1000);
 });
 
 socket.on('awkwardSilence', awkwardSilenceObject => {
-    playJingle();
+    setTimeout(function () {
+
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have asked the group to repeat what has been said";
+
+        playAudio("Awkward silence.m4a");
+
+    }, 1000);
 });
 
 socket.on('iAmLost', iAmLostObject => {
-    playJingle();
+    setTimeout(function () {
+
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have asked the group to repeat what has been said";
+
+        playAudio("I am lost.m4a");
+
+    }, 1000);
 });
 
 socket.on('breakVote', breakVoteObject => {
     playJingle();
     // when someone pressed the vote button
+    const breakModal = document.getElementById("breakModal");
+    breakModal.classList.add('show');
+    breakModal.style.display = "block";
+    breakModal.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+
 });
 
 socket.on('breakDecision', breakDecisionObject => {
     playJingle();
     // when the vote has been decided
+
+    playAudio("Break - failure.m4a");
+
+    // playAudio("Break - success.m4a");
 });
 
 socket.on('compliment', complimentObject => {
@@ -120,59 +201,69 @@ socket.on('compliment', complimentObject => {
     showNotification();
 });
 
+
 socket.on('askOpinion', askOpinionObject => {
-    playJingle();
+
 });
 
 socket.on('showMeme', showMemeObject => {
-    playJingle();
+    setTimeout(function () {
+        showNotification();
 
-    // bubble
-    const bubble = document.getElementById('speechBubble');
-    bubble.innerText = "I have sent a meme to the group chat";
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have sent a meme to the group chat";
 
-    setTimeout( () => {
-        const audio = new Audio(`audio/Meme.m4a`);
-        audio.play();
+        // group
+        const groupChat = document.getElementById("group-container");
+        const memeImg = document.createElement("img");
+        const br = document.createElement("br");
+        memeImg.src = showMemeObject.groupChatText;
+        memeImg.classList.add("memeImg");
+        groupChat.appendChild(memeImg);
+        groupChat.appendChild(br);
+
+        playAudio("Meme.m4a");
+
     }, 1000);
-
-    // group
-    const groupChat = document.getElementById("group-container");
-    const memeImg = document.createElement("img");
-    const br = document.createElement("br");
-    memeImg.src = showMemeObject.groupChatText;
-    memeImg.classList.add("memeImg");
-    groupChat.appendChild(memeImg);
-    groupChat.appendChild(br);
-
-    showNotification();
-
 });
 
 socket.on('iceBreaker', iceBreakerObject => {
     playJingle();
-    // bubble
-    const bubble = document.getElementById('speechBubble');
-    bubble.innerText = "I have proposed an ice breaker activity";
 
+    setTimeout(function () {
+
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have proposed an ice breaker activity";
+
+        playAudio("Icebreaker.m4a");
+
+    }, 1000);
 });
 
 // joke object = {groupChatText, speechFile}
 socket.on('joke', jokeObject => {
     playJingle();
-    // bubble
-    const bubble = document.getElementById('speechBubble');
-    bubble.innerText = "I sent a joke in the group chat";
 
-    // group
-    const groupChat = document.getElementById("group-container");
-    const paragraphElement = document.createElement("span");
-    const br = document.createElement("br");
-    paragraphElement.innerText = jokeObject.groupChatText;
-    groupChat.appendChild(paragraphElement);
-    groupChat.appendChild(br);
+    setTimeout(function () {
+        showNotification();
 
-    showNotification();
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I sent a joke in the group chat";
+
+        // group
+        const groupChat = document.getElementById("group-container");
+        const paragraphElement = document.createElement("span");
+        const br = document.createElement("br");
+        paragraphElement.innerText = jokeObject.groupChatText;
+        groupChat.appendChild(paragraphElement);
+        groupChat.appendChild(br);
+
+        playAudio(jokeObject.voiceFile);
+
+    }, 1000);
 });
 
 const playJingle = () => {
@@ -180,11 +271,16 @@ const playJingle = () => {
     audio.play();
 }
 
+
+function playAudio(name) {
+    const audio = new Audio("audio/" + name);
+    audio.play();
+}
+
 const showNotification = () => {
     // show notification
     const groupTab = document.getElementById("group");
-    if(groupTab.classList.contains("hide")){
-        console.log("here")
+    if (groupTab.classList.contains("hide")) {
         const notification = document.getElementById("msg");
         notification.classList.remove("hide");
     }

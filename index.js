@@ -28,7 +28,14 @@ io.on('connection', socket => {
     socket.on('joke', () => io.emit('joke', mockData.getJoke()));
 
     socket.on('showMeme', () => io.emit('showMeme', mockData.getMeme()));
-    // socket.on('compliment', name => io.emit('compliment', mockData.getCompliment(name)));
+    socket.on('iceBreaker', () => io.emit('iceBreaker', mockData.getIceBreaker()));
+    socket.on('passTheMic', () => io.emit('passTheMic'));
+    socket.on('backToWork', () => io.emit('backToWork'));
+    socket.on('awkwardSilence', () => io.emit('awkwardSilence'));
+    socket.on('iAmLost', () => io.emit('iAmLost'));
+    socket.on('breakVote', () => io.emit('breakVote'));
+    // socket.on('askOpinion', () => io.emit('askOpinion', mockData.getAskOpinion()));
+    socket.on('randomPerson', () => io.emit('randomPerson', mockData.getRandomPerson()));
 
     socket.on('timer', obj => {
 
@@ -45,8 +52,11 @@ io.on('connection', socket => {
 
         io.emit('timerStart', { speechFile: "Start%20timer"});
 
+
         const timer = new Timer();
-        timer.on('tick', ms => io.emit('timerUpdate', { time: millisToMinutesAndSeconds(ms)}));
+        timer.on('tick', ms => {
+            io.emit('timerUpdate', {time: millisToMinutesAndSeconds(ms)})
+        });
         timer.on('done', () => {
             io.emit('timerDone', { speechFile: "End%20timer"})
             TIMER_IN_USE = false;
