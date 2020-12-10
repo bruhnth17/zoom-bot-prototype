@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
-    <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <div class="row">
@@ -19,13 +19,13 @@
         <div id="bot-btn" style="background-color: white; padding: 8px" onclick="openPersonalTab()">BOT CHAT</div>
     </div>
     <div class="col-6 fix-padding-right">
-        <div id="group-btn" style="background-color: lightgray; padding: 8px" onclick="openGroupTab()">GROUP CHAT</div>
+        <div id="group-btn" style="background-color: lightgray; padding: 8px" onclick="openGroupTab()">
+            <i class="fa fa-envelope msg hide" aria-hidden="true"></i>GROUP CHAT</div>
     </div>
 </div>
 
 <div id="group" style="display: none">
-    <div class="group-container">
-    <ul id="list2"></ul>
+    <div id="group-container">
     </div>
 </div>
 <div id="personal">
@@ -34,18 +34,21 @@
             <img src="images/bot.png" class="bot-img">
         </div>
         <div class="col-8">
-            <div class="speech-bubble">
+            <div class="speech-bubble" id="speechBubble">
                 Hello!
+                <ul id="list"></ul>
+            </div>
+
+            <div id="timer">
             </div>
         </div>
     </div>
 
-    <ul id="list"></ul>
+
 
 
     <div class="btn-container">
         <!--    The buttons-->
-
         <h6 class="small-top-margin">Help our team</h6>
         <div class="row color-1">
             <div class="col-6 fix-padding-right">
@@ -91,7 +94,7 @@
                 <button id="b12" onclick="jokeOnClick()" type="button" class="btn  btn-block">JOKE</button>
             </div>
             <div class="col-6 fix-padding-left">
-                <button id="b10" type="button" class="btn btn-block">SHOW MEME</button>
+                <button id="b10" onclick="memeOnClick()" type="button" class="btn btn-block">SHOW MEME</button>
             </div>
         </div>
 

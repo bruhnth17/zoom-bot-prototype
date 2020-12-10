@@ -18,6 +18,7 @@ io.on('connection', socket => {
     console.log('a user connected');
 
     socket.on('joke', () => io.emit('joke', mockData.getJoke()));
+    socket.on('showMeme', () => io.emit('showMeme', mockData.getMeme()));
     // socket.on('compliment', name => io.emit('compliment', mockData.getCompliment(name)));
 
     socket.on('timer', obj => {

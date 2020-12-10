@@ -6,14 +6,20 @@ const JOKES = [{
     groupChatText: "My mexican uncle is taking anti anxiety pills. It's for hispanic attacks",
     voiceFile: undefined
 }];
-const MEMES = [];
+
+const MEMES = [{
+    groupChatText: "https://i.redd.it/2qyh9ydixf351.jpg",
+    voiceFile: undefined
+}];
 const ICEBREAKERS = [];
 // ...
 
 
 const _getJoke = () => getRandomEntry(JOKES);
+const _getMeme = () => getRandomEntry(MEMES);
 
 
 module.exports = {
-    getJoke: _getJoke
+    getJoke: _getJoke,
+    getMeme: _getMeme
 };

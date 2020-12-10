@@ -7,6 +7,12 @@ const jokeOnClick = () => {
     socket.emit('joke')
 };
 
+// Outgoing socket events
+const memeOnClick = () => {
+    playJingle();
+    socket.emit('showMeme')
+};
+
 const timerOnClick = minutes => {
     socket.emit('timer', {
         minutes: minutes
@@ -34,7 +40,6 @@ socket.on('timerStart', timerStartObject => {
     playJingle();
 
     setTimeout(function (){
-
         console.log(`audio/${timerStartObject.speechFile}.m4a`);
         const audio = new Audio(`audio/${timerStartObject.speechFile}.m4a`);
         audio.play();
@@ -44,6 +49,11 @@ socket.on('timerStart', timerStartObject => {
 
 socket.on('timerUpdate', timerUpdateObject => {
     console.log(timerUpdateObject.time)
+    const timer = document.getElementById('timer');
+    const timerText = document.createElement("span");
+    timer.innerText = "Timer: "+ timerUpdateObject.time;
+    timer.appendChild(timerText);
+
 });
 
 socket.on('timerDone', timerDoneObject => {
@@ -87,19 +97,40 @@ socket.on('askOpinion', askOpinionObject => {
 });
 
 socket.on('showMeme', showMemeObject => {
+    // bubble
+    const bubble = document.getElementById('speechBubble');
+    bubble.innerText = "I have sent a meme to the group chat";
+
+    // group
+    const groupChat = document.getElementById("group-container");
+    const memeImg = document.createElement("img");
+    const br = document.createElement("br");
+    memeImg.src = showMemeObject.groupChatText;
+    groupChat.appendChild(memeImg);
+    groupChat.appendChild(br);
+
 });
 
 socket.on('iceBreaker', iceBreakerObject => {
+    // bubble
+    const bubble = document.getElementById('speechBubble');
+    bubble.innerText = "I have proposed an ice breaker activity";
+
 });
 
 // joke object = {groupChatText, speechFile}
 socket.on('joke', jokeObject => {
-    const list = document.getElementById('list');
-    const newListItem = document.createElement("li");
-    const paragraphElement = document.createElement("p");
+    // bubble
+    const bubble = document.getElementById('speechBubble');
+    bubble.innerText = "I sent a joke in the group chat";
+
+    // group
+    const groupChat = document.getElementById("group-container");
+    const paragraphElement = document.createElement("span");
+    const br = document.createElement("br");
     paragraphElement.innerText = jokeObject.groupChatText;
-    newListItem.appendChild(paragraphElement);
-    list.appendChild(newListItem);
+    groupChat.appendChild(paragraphElement);
+    groupChat.appendChild(br);
 });
 
 const playJingle = () => {

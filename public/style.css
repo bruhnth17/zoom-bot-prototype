@@ -35,7 +35,7 @@ h1 {
 }
 
 .hide {
-    display: none;
+    display: none!important;
 }
 
 .bot-img{
@@ -84,4 +84,18 @@ div.color-2 button{
 
 div.color-3 button{
     background-color: #84C7F2;
+}
+
+#timer{
+    padding-top: 10px;
+    padding-left: 12px;
+}
+
+.msg{
+    margin-right: 10px;
+    color: orangered;
+}
+
+#group-container{
+    padding: 16px;
 }
