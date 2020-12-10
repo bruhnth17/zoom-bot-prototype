@@ -64,6 +64,29 @@ const complimentClick = name => {
     })
 }
 
+const opinionClick = name => {
+    socket.emit('opinion', {
+        name: name
+    })
+}
+
+socket.on('opinion', opinionObject => {
+    playJingle();
+
+    setTimeout(function () {
+        showNotification();
+
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I asked for the opinion of " + opinionObject.name;
+
+        sendTextToGroup(opinionObject.groupChatText);
+
+        playAudio(opinionObject.voiceFile + ".m4a");
+
+    }, 1000);
+})
+
 socket.on('randomPerson', randomPersonObject => {
     changeEyecolor();
     playJingle();
@@ -212,11 +235,6 @@ socket.on('compliment', complimentObject => {
     sendTextToGroup(complimentObject.groupChatText);
 
     showNotification();
-});
-
-
-socket.on('askOpinion', askOpinionObject => {
-
 });
 
 socket.on('showMeme', showMemeObject => {
