@@ -113,6 +113,15 @@ socket.on('passTheMic', passTheMicObject => {
 });
 
 socket.on('backToWork', backToWorkObject => {
+    setTimeout(function () {
+
+        // bubble
+        const bubble = document.getElementById('speechBubble');
+        bubble.innerText = "I have asked the group to go back to work";
+
+        playAudio("Back to work.m4a");
+
+    }, 1000);
 });
 
 socket.on('awkwardSilence', awkwardSilenceObject => {
