@@ -30,7 +30,7 @@ const workOnClick = () => {
 // Outgoing socket events
 const breakOnClick = () => {
     playJingle();
-    socket.emit('breakVote')
+    socket.emit('break')
 };
 
 // Outgoing socket events
@@ -180,16 +180,23 @@ socket.on('breakVote', breakVoteObject => {
     breakModal.classList.add('show');
     breakModal.style.display = "block";
     breakModal.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+    setTimeout( () => {
+        playAudio("Have a break .m4a")
+    }, 1000);
 
 });
 
-socket.on('breakDecision', breakDecisionObject => {
+socket.on('breakDecision', breakDecision => {
     playJingle();
     // when the vote has been decided
+    setTimeout( () => {
+        if(breakDecision) {
+            playAudio("Break - success.m4a");
+        } else {
+            playAudio("Break - failure.m4a");
+        }
+    }, 1000);
 
-    playAudio("Break - failure.m4a");
-
-    // playAudio("Break - success.m4a");
 });
 
 socket.on('compliment', complimentObject => {
@@ -348,4 +355,8 @@ function changeEyecolor() {
     }, 500);
 }
 
+const breakVote = vote => {
+    console.log("vote", vote);
+    socket.emit("vote", vote);
+}
 

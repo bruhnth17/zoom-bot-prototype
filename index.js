@@ -6,7 +6,12 @@ const io = require('socket.io')(http);
 const mockData = require(__dirname + '/helper/mockData.js');
 
 let TIMER_IN_USE = false;
+let VOTE_IN_PROGRESS = false;
 let USERS = []
+const VOTES = {
+    yes: 0,
+    no: 0,
+}
 
 app.use(express.static(__dirname + '/public'));
 
@@ -33,7 +38,12 @@ io.on('connection', socket => {
     socket.on('backToWork', () => io.emit('backToWork'));
     socket.on('awkwardSilence', () => io.emit('awkwardSilence'));
     socket.on('iAmLost', () => io.emit('iAmLost'));
-    socket.on('breakVote', () => io.emit('breakVote'));
+    socket.on('break', () => {
+        if(VOTE_IN_PROGRESS)
+            return;
+        VOTE_IN_PROGRESS = true;
+        io.emit('breakVote');
+    });
     // socket.on('askOpinion', () => io.emit('askOpinion', mockData.getAskOpinion()));
     socket.on('randomPerson', () => io.emit('randomPerson', mockData.getRandomPerson()));
 
@@ -64,7 +74,32 @@ io.on('connection', socket => {
         timer.start(obj.minutes * 1000 * 60);
     })
 
+    socket.on('vote', vote => {
+        if(vote) {
+            VOTES.yes = VOTES.yes+1;
+        } else {
+            VOTES.no = VOTES.no+1;
+        }
+        const threshold = USERS.length / 2;
+        if(VOTES.yes > threshold) {
+            io.emit('breakDecision', true);
+            resetVotes();
+            return;
+        }
+        if(VOTES.no > threshold) {
+            io.emit('breakDecision', false);
+            resetVotes();
+            return;
+        }
+    })
+
 });
+
+const resetVotes = () => {
+    VOTE_IN_PROGRESS = false;
+    VOTES.yes = 0;
+    VOTES.no = 0;
+}
 
 const userRegistration = socket => {
     USERS.push({
