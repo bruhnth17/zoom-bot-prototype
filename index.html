@@ -13,16 +13,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <div class="row">
-        <div class="col-6 fix-padding-right ">
-            <button class="btn btn-block bg-white">BOT CHAT</button>
-        </div>
-        <div class="col-6 fix-padding-right">
-            <button class="btn btn-block">GROUP CHAT</button>
-        </div>
-    </div>
 
+<div class="row">
+    <div class="col-6 fix-padding-right ">
+        <button class="btn btn-block bg-white" onclick="openPersonalTab()">BOT CHAT</button>
+    </div>
+    <div class="col-6 fix-padding-right">
+        <button class="btn btn-block" onclick="openGroupTab()">GROUP CHAT</button>
+    </div>
+</div>
+
+<div id="group" class="hide">
+    Group content
+</div>
+<div id="personal">
     <img src="images/bot.png" class="bot-img">
 
     <ul id="list"></ul>
@@ -47,15 +51,21 @@
                 <button id="b8" data-toggle="modal" data-target="#breakModal" type="button"
                         class="btn btn-primary btn-block">BREAK
                 </button>
-                <button id="b9" data-toggle="modal" data-target="#complimentModal" type="button" class="btn btn-primary btn-block">COMPLIMENT</button>
-                <button id="b10" data-toggle="modal" data-target="#opinionModal" type="button" class="btn btn-primary btn-block">ASK OPINION</button>
-                <button id="b11" data-toggle="modal" data-target="#isokModal" type="button" class="btn btn-primary btn-block">MAKE SURE _ IS OK</button>
+                <button id="b9" data-toggle="modal" data-target="#complimentModal" type="button"
+                        class="btn btn-primary btn-block">COMPLIMENT
+                </button>
+                <button id="b10" data-toggle="modal" data-target="#opinionModal" type="button"
+                        class="btn btn-primary btn-block">ASK OPINION
+                </button>
+                <button id="b11" data-toggle="modal" data-target="#isokModal" type="button"
+                        class="btn btn-primary btn-block">MAKE SURE _ IS OK
+                </button>
                 <button id="b12" type="button" class="btn btn-success btn-block">SHOW MEME</button>
                 <button id="b13" type="button" class="btn btn-success btn-block">ICE BREAKER</button>
                 <button id="b14" onclick="jokeOnClick()" type="button" class="btn btn-success btn-block">JOKE</button>
             </div>
-        </div>
 
+        </div>
         <!--    The description field to show each functionality    -->
         <div class="description-field">
             <h6 id="d1" class="hide">Bot sets a timer and tells the group when the time is up</h6>
@@ -66,12 +76,13 @@
             <h6 id="d6" class="hide">Bot breaks the awkward silence with something</h6>
             <h6 id="d7" class="hide">Bot anonymously says that there is someone who got lost and asks all the group to
                 repeat briefly what has been said</h6>
-            <h6 id="d8" class="hide">Bot asks everyone to vote for a break, each person replies via their individual chat
+            <h6 id="d8" class="hide">Bot asks everyone to vote for a break, each person replies via their individual
+                chat
                 with the bot</h6>
             <h6 id="d9" class="hide">Bot says in the group a compliment for the specified person</h6>
             <h6 id="d10" class="hide">Bot asks the specified person for their opinion</h6>
-            <h6 id="d11" class="hide">Bot sends an anonymous message to the specified person. The reply is sent back to the
-                person who asked the bot</h6>
+            <h6 id="d11" class="hide">Bot sends an anonymous message to the specified person. The reply is sent back to
+                the person who asked the bot</h6>
             <h6 id="d12" class="hide">Bot shows the group a meme</h6>
             <h6 id="d13" class="hide">Bot proposes a short ice breaker activity</h6>
             <h6 id="d14" class="hide">Bot tells the group a joke</h6>
@@ -166,7 +177,6 @@
                     <button type="button" class="btn btn-primary btn-block">ANQI</button>
                     <button type="button" class="btn btn-primary btn-block">THOMAS</button>
                     <button type="button" class="btn btn-primary btn-block">LEO</button>
-
                 </div>
             </div>
         </div>
@@ -192,6 +202,8 @@
         </div>
     </div>
 
+</div>
+
     <!--    Show description of each function when you hover a button   -->
     <script>
         $("button").hover(
@@ -205,6 +217,24 @@
             }
         )
     </script>
+
+<!--Change between tabs-->
+<script>
+    function openGroupTab() {
+        var personalContent = document.getElementById("personal");
+        var groupContent = document.getElementById("personal");
+        personalContent.classList.remove("hide");
+        groupContent.classList.add("hide");
+    }
+
+    function openPersonalTab() {
+        var personalContent = document.getElementById("personal");
+        var groupContent = document.getElementById("personal");
+
+        personalContent.classList.add("hide");
+        groupContent.classList.remove("hide");
+    }
+</script>
 
 </body>
 </html>
