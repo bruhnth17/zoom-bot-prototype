@@ -115,6 +115,7 @@ const userRegistration = socket => {
     })
 
     socket.on('disconnect', () => {
+        console.log('disconnect', socket.id)
         USERS = USERS.filter( el => el.id !== socket.id );
     })
 }
